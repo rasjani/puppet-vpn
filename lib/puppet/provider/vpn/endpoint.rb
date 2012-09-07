@@ -1,17 +1,16 @@
 Puppet::Type.type(:vpn).provide(:endpoint) do
     desc "Checkpoint Endpoint Support"
-    syntax_terror
     commands :epcommand=> "/Library/Application\ Support/Checkpoint/Endpoint\ Connect/command_line"
 
     def create
-        epcommand "create -s ", resource [:acesspoint], " -a ", resource[:authentication]
+        epcommand "create","-s", resource[:access_point].split(":")[1], "-a", resource[:authentication_type]
     end
 
     def destroy
-        epcommand "delete -s '", resource [:acesspoint], "'"
+        epcommand "delete","-s", resource[:access_point]
     end
 
     def exists?
-        true
+        false
     end
 end
