@@ -3,7 +3,7 @@ Puppet::Type.type(:vpn).provide(:endpoint) do
     commands :epcommand=> "/Library/Application\ Support/Checkpoint/Endpoint\ Connect/command_line"
 
     def create
-        epcommand "create","-s", resource[:access_point].split(":")[1], "-a", resource[:authentication_type]
+        epcommand "create","-s", resource[:access_point], "-a", resource[:authentication_type]
     end
 
     def destroy
